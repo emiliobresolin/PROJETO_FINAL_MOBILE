@@ -15,40 +15,13 @@ public class DBHelper extends SQLiteOpenHelper
 
     @Override
     public void onCreate(SQLiteDatabase MyDB) {
-        MyDB.execSQL("create Table users(username TEXT primary key, password TEXT)");
+        String stm =  "create table users (id INTEGER PRIMARY KEY, name TEXT," +
+            "userLogin TEXT, password TEXT);";
+        MyDB.execSQL(stm);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase MyDB, int i, int i1) {
         MyDB.execSQL("drop Table if exists users");
-    }
-
-    public Boolean insertData(String username, String password){
-        SQLiteDatabase MyDB = this.getWritableDatabase();
-        ContentValues contentValues= new ContentValues();
-        contentValues.put("username", username);
-        contentValues.put("password", password);
-        long result = MyDB.insert("users", null, contentValues);
-        if(result==-1) return false;
-        else
-            return true;
-    }
-
-    public Boolean checkusername(String username) {
-        SQLiteDatabase MyDB = this.getWritableDatabase();
-        Cursor cursor = MyDB.rawQuery("Select * from users where username = ?", new String[]{username});
-        if (cursor.getCount() > 0)
-            return true;
-        else
-            return false;
-    }
-
-    public Boolean checkusernamepassword(String username, String password){
-        SQLiteDatabase MyDB = this.getWritableDatabase();
-        Cursor cursor = MyDB.rawQuery("Select * from users where username = ? and password = ?", new String[] {username,password});
-        if(cursor.getCount()>0)
-            return true;
-        else
-            return false;
     }
 }

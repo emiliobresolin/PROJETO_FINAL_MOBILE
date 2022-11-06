@@ -18,6 +18,9 @@ public class DBHelper extends SQLiteOpenHelper
         String stm =  "create table users (id INTEGER PRIMARY KEY, name TEXT," +
             "userLogin TEXT, password TEXT);";
         MyDB.execSQL(stm);
+        String stn = "create table items (id INTEGER PRIMARY KEY, productName TEXT," +
+                "expirationDate TEXT, productPrice TEXT, quantity TEXT);";
+        MyDB.execSQL(stn);
     }
 
     @Override

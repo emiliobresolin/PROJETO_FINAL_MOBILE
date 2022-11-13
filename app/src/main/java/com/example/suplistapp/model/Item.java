@@ -18,6 +18,13 @@ public class Item
         this.quantity = quantity;
     }
 
+    public Item(String productName, String expirationDate, Double productPrice, Integer quantity) {
+        this.productName = productName;
+        this.expirationDate = expirationDate;
+        this.productPrice = productPrice;
+        this.quantity = quantity;
+    }
+
     public int getId() {
         return id;
     }

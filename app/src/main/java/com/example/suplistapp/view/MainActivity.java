@@ -4,12 +4,15 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.suplistapp.R;
+import com.example.suplistapp.model.Item;
 import com.example.suplistapp.model.User;
+import com.example.suplistapp.repository.ItemRepository;
 import com.example.suplistapp.viewmodel.HomeVM;
 import com.example.suplistapp.viewmodel.LoginVM;
 import com.example.suplistapp.repository.UserRepository;
@@ -32,6 +35,8 @@ public class MainActivity extends Activity {
     HomeVM homeVM = new HomeVM(this);
     private UserRepository userRepository = new UserRepository(this);
 
+    ItemRepository itemRepository = new ItemRepository(this);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -48,7 +53,6 @@ public class MainActivity extends Activity {
         catch (Exception e) {
             e.getMessage();
         }
-
         homeVM.ifLogged(logged, this, name);
     }
 

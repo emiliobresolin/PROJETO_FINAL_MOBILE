@@ -77,7 +77,32 @@ public class ItemRepository
         sqLiteDatabase.close();
     }
 
-    private Item userFromCursor(Cursor cursor) {
+    public void deleteItem(Item item){
+        SQLiteDatabase sqLiteDatabase = dataBaseHelper.getWritableDatabase();
+        sqLiteDatabase.delete(
+            "items",
+            "id = ?",
+            new String[] {String.valueOf(item.getId())}
+        );
+        sqLiteDatabase.close();
+    }
+
+    public void updateItem(Item item){
+        SQLiteDatabase sqLiteDatabase = dataBaseHelper.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("productName", item.getProductName());
+        contentValues.put("expirationDate", item.getExpirationDate());
+        contentValues.put("productPrice", item.getProductPrice());
+        contentValues.put("quantity", item.getQuantity());
+        sqLiteDatabase.update(
+            "items", contentValues,
+            "id = ?",
+            new String[] { String.valueOf(item.getId())}
+            );
+        sqLiteDatabase.close();
+    }
+
+    private Item itemFromCursor(Cursor cursor) {
         Item item = new Item(
                 Integer.parseInt(cursor.getString(0)),
                 cursor.getString(1),

@@ -35,7 +35,6 @@ public class LoginVM {
   public void handler(View view, String result, User user){
     if(result.isEmpty()){
       Intent intent = new Intent(view.getContext(), HomeActivity.class);
-      intent.putExtra("name", user.getName());
       activity.startActivity(intent);
     }
   }

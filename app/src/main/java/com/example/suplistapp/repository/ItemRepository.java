@@ -10,6 +10,8 @@ import com.example.suplistapp.Data.DBHelper;
 import com.example.suplistapp.model.Item;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ItemRepository
 {
@@ -20,11 +22,115 @@ public class ItemRepository
         this.dataBaseHelper = new DBHelper(context);
     }
 
+    public List<Item> getAllItems() {
+        List<Item> items = new ArrayList<>();
+        String query = "SELECT * FROM items";
+        SQLiteDatabase db = dataBaseHelper.getReadableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+
+        if(cursor.moveToFirst()) {
+            do {
+                Item item = new Item(
+                    Integer.parseInt(cursor.getString(0)),
+                    cursor.getString(1),
+                    cursor.getString(2),
+                    Double.parseDouble(cursor.getString(3)),
+                    Integer.parseInt(cursor.getString(4)),
+                    cursor.getString(5)
+                );
+                items.add(item);
+            } while (cursor.moveToNext());
+        }
+
+        return items;
+    }
+
+    public List<Item> getAllDailyItems() {
+        List<Item> dailyItems = new ArrayList<>();
+        SQLiteDatabase db = dataBaseHelper.getReadableDatabase();
+        Cursor cursor = db.query(
+            "items",
+            new String[] {"id", "productName", "expirationDate", "productPrice", "quantity", "listType"},
+            "listType = ?",
+            new String[] {"daily"},
+            null, null, null, null
+        );
+        if(cursor.moveToFirst()) {
+            do {
+                Item item = new Item(
+                    Integer.parseInt(cursor.getString(0)),
+                    cursor.getString(1),
+                    cursor.getString(2),
+                    Double.parseDouble(cursor.getString(3)),
+                    Integer.parseInt(cursor.getString(4)),
+                    cursor.getString(5)
+                );
+                dailyItems.add(item);
+            } while (cursor.moveToNext());
+        }
+
+        return dailyItems;
+    }
+
+    public List<Item> getAllWeeklyItems() {
+        List<Item> weeklyItems = new ArrayList<>();
+        SQLiteDatabase db = dataBaseHelper.getReadableDatabase();
+        Cursor cursor = db.query(
+            "items",
+            new String[] {"id", "productName", "expirationDate", "productPrice", "quantity", "listType"},
+            "listType = ?",
+            new String[] {"weekly"},
+            null, null, null, null
+        );
+        if(cursor.moveToFirst()) {
+            do {
+                Item item = new Item(
+                    Integer.parseInt(cursor.getString(0)),
+                    cursor.getString(1),
+                    cursor.getString(2),
+                    Double.parseDouble(cursor.getString(3)),
+                    Integer.parseInt(cursor.getString(4)),
+                    cursor.getString(5)
+                );
+                weeklyItems.add(item);
+            } while (cursor.moveToNext());
+        }
+
+        return weeklyItems;
+    }
+
+    public List<Item> getAllMonthlyItems() {
+        List<Item> monthlyItems = new ArrayList<>();
+        SQLiteDatabase db = dataBaseHelper.getReadableDatabase();
+        Cursor cursor = db.query(
+            "items",
+            new String[] {"id", "productName", "expirationDate", "productPrice", "quantity", "listType"},
+            "listType = ?",
+            new String[] {"monthly"},
+            null, null, null, null
+        );
+        if(cursor.moveToFirst()) {
+            do {
+                Item item = new Item(
+                    Integer.parseInt(cursor.getString(0)),
+                    cursor.getString(1),
+                    cursor.getString(2),
+                    Double.parseDouble(cursor.getString(3)),
+                    Integer.parseInt(cursor.getString(4)),
+                    cursor.getString(5)
+                );
+                monthlyItems.add(item);
+            } while (cursor.moveToNext());
+        }
+
+        return monthlyItems;
+    }
+
     public Item getItemById(int id){
         SQLiteDatabase sqLiteDatabase = dataBaseHelper.getReadableDatabase();
         Cursor cursor = sqLiteDatabase.query(
                 "items",
-                new String[] {"id", "productName", "expirationDate", "productPrice", "quantity"},
+                new String[] {"id", "productName", "expirationDate", "productPrice", "quantity", "listType"},
                 "id = ?",
                 new String[] {String.valueOf(id)},
                 null, null, null, null);
@@ -34,7 +140,9 @@ public class ItemRepository
                 cursor.getString(1),
                 cursor.getString(2),
                 Double.parseDouble(cursor.getString(3)),
-                Integer.parseInt(cursor.getString(4)));
+                Integer.parseInt(cursor.getString(4)),
+                cursor.getString(5)
+        );
 
         return item;
     }
@@ -43,7 +151,7 @@ public class ItemRepository
         SQLiteDatabase sqLiteDatabase = dataBaseHelper.getReadableDatabase();
         Cursor cursor = sqLiteDatabase.query(
                 "items",
-                new String[] {"id", "productName", "expirationDate", "productPrice", "quantity"},
+                new String[] {"id", "productName", "expirationDate", "productPrice", "quantity", "listType"},
                 "productName = ?",
                 new String[] {String.valueOf(productName)},
                 null, null, null, null);
@@ -56,7 +164,9 @@ public class ItemRepository
                     cursor.getString(1),
                     cursor.getString(2),
                     Double.parseDouble(cursor.getString(3)),
-                    Integer.parseInt(cursor.getString(4)));
+                    Integer.parseInt(cursor.getString(4)),
+                    cursor.getString(5)
+            );
         }
         catch (CursorIndexOutOfBoundsException e) {
             e.getMessage();
@@ -73,6 +183,7 @@ public class ItemRepository
         contentValues.put("expirationDate", item.getExpirationDate());
         contentValues.put("productPrice", item.getProductPrice());
         contentValues.put("quantity", item.getQuantity());
+        contentValues.put("listType", item.getListType());
         sqLiteDatabase.insert("items", null, contentValues);
         sqLiteDatabase.close();
     }
@@ -94,6 +205,7 @@ public class ItemRepository
         contentValues.put("expirationDate", item.getExpirationDate());
         contentValues.put("productPrice", item.getProductPrice());
         contentValues.put("quantity", item.getQuantity());
+        contentValues.put("listType", item.getListType());
         sqLiteDatabase.update(
             "items", contentValues,
             "id = ?",
@@ -108,7 +220,9 @@ public class ItemRepository
                 cursor.getString(1),
                 cursor.getString(2),
                 Double.parseDouble(cursor.getString(3)),
-                Integer.parseInt(cursor.getString(4)));
+                Integer.parseInt(cursor.getString(4)),
+                cursor.getString(5)
+        );
         return item;
     }
 }

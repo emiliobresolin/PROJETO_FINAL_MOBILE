@@ -8,21 +8,32 @@ public class Item
     private String productName;
     private String expirationDate;
     private Double productPrice;
-    private Integer quantity; //UNITY?????
+    private Integer quantity;
+    private String listType;
 
-    public Item(int id, String productName, String expirationDate, Double productPrice, Integer quantity) {
+    public Item(int id, String productName, String expirationDate, Double productPrice, Integer quantity, String listType) {
         this.id = id;
         this.productName = productName;
         this.expirationDate = expirationDate;
         this.productPrice = productPrice;
         this.quantity = quantity;
+        this.listType = listType;
     }
 
-    public Item(String productName, String expirationDate, Double productPrice, Integer quantity) {
+    public Item(String productName, String expirationDate, Double productPrice, Integer quantity, String listType) {
         this.productName = productName;
         this.expirationDate = expirationDate;
         this.productPrice = productPrice;
         this.quantity = quantity;
+        this.listType = listType;
+    }
+
+    public String getListType() {
+        return listType;
+    }
+
+    public void setListType(String listType) {
+        this.listType = listType;
     }
 
     public int getId() {
@@ -63,5 +74,17 @@ public class Item
 
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
+    }
+
+    @Override
+    public String toString() {
+        return "Item{" +
+            "id=" + id +
+            ", productName='" + productName + '\'' +
+            ", expirationDate='" + expirationDate + '\'' +
+            ", productPrice=" + productPrice +
+            ", quantity=" + quantity +
+            ", listType='" + listType + '\'' +
+            '}';
     }
 }

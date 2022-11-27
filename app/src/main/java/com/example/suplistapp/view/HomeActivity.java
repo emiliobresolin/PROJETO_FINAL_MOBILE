@@ -3,15 +3,19 @@ package com.example.suplistapp.view;
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
 import com.example.suplistapp.R;
+import com.example.suplistapp.model.Item;
+import com.example.suplistapp.repository.ItemRepository;
 import com.example.suplistapp.repository.UserRepository;
 import com.example.suplistapp.viewmodel.HomeVM;
 
 public class HomeActivity extends Activity {
 
+  private final String TAG = "HomeActivity";
   TextView user;
   String userName;
 
@@ -20,6 +24,7 @@ public class HomeActivity extends Activity {
 
   HomeVM homeVM = new HomeVM(this);
   private UserRepository userRepository = new UserRepository(this);
+  private ItemRepository itemRepository = new ItemRepository(this);
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {

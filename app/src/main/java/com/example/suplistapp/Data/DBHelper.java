@@ -20,7 +20,7 @@ public class DBHelper extends SQLiteOpenHelper
             "userLogin TEXT, password TEXT);";
         MyDB.execSQL(stm);
         String stn = "create table items (id INTEGER PRIMARY KEY, productName TEXT," +
-                "expirationDate TEXT, productPrice TEXT, quantity TEXT);";
+                "expirationDate TEXT, productPrice TEXT, quantity TEXT, listType TEXT);";
         MyDB.execSQL(stn);
     }
 

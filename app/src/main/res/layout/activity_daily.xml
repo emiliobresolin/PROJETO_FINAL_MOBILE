@@ -43,13 +43,13 @@
         android:layout_width="282dp"
         android:layout_height="358dp"
         android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/EditButtonDaily"
+        app:layout_constraintBottom_toTopOf="@+id/editButtonDaily"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/EditButtonDaily"
+        android:id="@+id/editButtonDaily"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="104dp"

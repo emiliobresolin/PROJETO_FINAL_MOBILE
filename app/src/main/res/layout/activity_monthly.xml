@@ -12,7 +12,7 @@
         android:layout_width="282dp"
         android:layout_height="358dp"
         android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/editButtonMonthly"
+        app:layout_constraintBottom_toTopOf="@+id/addButtonMonthly"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent" />
@@ -49,11 +49,11 @@
         app:layout_constraintVertical_bias="0.683" />
 
     <Button
-        android:id="@+id/editButtonMonthly"
+        android:id="@+id/addButtonMonthly"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
-        android:text="Editar"
+        android:text="ADICIONAR ITEM"
         app:layout_constraintBottom_toTopOf="@+id/textView17"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"

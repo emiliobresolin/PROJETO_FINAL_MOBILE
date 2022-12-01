@@ -150,4 +150,12 @@
         app:layout_constraintHorizontal_bias="0.64"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <TextView
+        android:id="@+id/user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        tools:layout_editor_absoluteX="43dp"
+        tools:layout_editor_absoluteY="103dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

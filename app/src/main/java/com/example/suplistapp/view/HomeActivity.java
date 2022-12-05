@@ -1,6 +1,7 @@
 package com.example.suplistapp.view;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -48,5 +49,20 @@ public class HomeActivity extends Activity {
 
   public void onClickSignOut(View view){
     homeVM.logOutHandler(logged, preferences, view);
+  }
+
+  public void onClickDaily(View view) {
+    Intent intent = new Intent(view.getContext(), DailyActivity.class);
+    startActivity(intent);
+  }
+
+  public void onClickWeekly(View view) {
+    Intent intent = new Intent(view.getContext(), WeeklyActivity.class);
+    startActivity(intent);
+  }
+
+  public void onClickMonthly(View view) {
+    Intent intent = new Intent(view.getContext(), MonthlyActivity.class);
+    startActivity(intent);
   }
 }

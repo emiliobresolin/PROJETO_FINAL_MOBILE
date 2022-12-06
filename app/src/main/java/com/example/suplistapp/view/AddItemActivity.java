@@ -23,6 +23,7 @@ public class AddItemActivity extends Activity {
     private String    priceString;
     private EditText  qty;
     private String   qtyString;
+
     ItemRepository repository;
 
     @Override

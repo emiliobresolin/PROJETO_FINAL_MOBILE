@@ -1,17 +1,15 @@
 package com.example.suplistapp.model;
 
-import java.util.Date;
-
 public class Item
 {
-    private int id;
+    private Integer id;
     private String productName;
     private String expirationDate;
     private Double productPrice;
     private Integer quantity;
     private String listType;
 
-    public Item(int id, String productName, String expirationDate, Double productPrice, Integer quantity, String listType) {
+    public Item(Integer id, String productName, String expirationDate, Double productPrice, Integer quantity, String listType) {
         this.id = id;
         this.productName = productName;
         this.expirationDate = expirationDate;
@@ -36,8 +34,12 @@ public class Item
         this.listType = listType;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
+    }
+
+    public String getIdString() {
+        return id.toString();
     }
 
     public void setId(int id) {

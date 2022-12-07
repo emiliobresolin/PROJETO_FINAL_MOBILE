@@ -7,33 +7,8 @@
     android:background="#2090EA"
     tools:context=".view.MonthlyActivity">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewDaily"
-        android:layout_width="282dp"
-        android:layout_height="358dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/addButtonMonthly"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <TextView
-        android:id="@+id/textView16"
-        android:layout_width="236dp"
-        android:layout_height="75dp"
-        android:layout_marginBottom="16dp"
-        android:fontFamily="sans-serif-black"
-        android:text="Lista de Compras Mensais"
-        android:textAlignment="center"
-        android:textColor="#FFFFFF"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/recyclerViewDaily"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/textView14"
+        android:id="@+id/textView3"
         android:layout_width="250dp"
         android:layout_height="39dp"
         android:fontFamily="sans-serif-black"
@@ -41,44 +16,111 @@
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/textView16"
+        app:layout_constraintBottom_toTopOf="@+id/textView6"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.683" />
-
-    <Button
-        android:id="@+id/addButtonMonthly"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
-        android:text="ADICIONAR ITEM"
-        app:layout_constraintBottom_toTopOf="@+id/textView17"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/textView17"
+        android:id="@+id/textView6"
+        android:layout_width="236dp"
+        android:layout_height="75dp"
+        android:fontFamily="sans-serif-black"
+        android:text="Lista de Compras Mensais"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerViewMonthly"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewMonthly"
+        android:layout_width="fill_parent"
+        android:layout_height="200dp"
+        android:layout_marginBottom="24dp"
+        app:layout_constraintBottom_toTopOf="@+id/addButtonMonthly"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:listitem="@layout/item_adapter" />
+
+    <Button
+        android:id="@+id/addButtonMonthly"
+        android:layout_width="210dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="126dp"
+        android:layout_marginEnd="126dp"
+        android:layout_marginBottom="8dp"
+        android:onClick="onCLickAdd"
+        android:text="Adicionar Item"
+        app:layout_constraintBottom_toTopOf="@+id/textViewDateMonthly"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.47"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewDateMonthly"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="4dp"
         android:text="Validade desta Lista até dia:"
-        app:layout_constraintBottom_toTopOf="@+id/monthlyTextDate"
+        app:layout_constraintBottom_toTopOf="@+id/MonthlyTextDate"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.272"
+        app:layout_constraintHorizontal_bias="0.068"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/monthlyTextDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
+        android:id="@+id/MonthlyTextDate"
+        android:layout_width="177dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="16dp"
         android:ems="10"
         android:inputType="date"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.318"
+        app:layout_constraintHorizontal_bias="0.079"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/productDelete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="27dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerViewMonthly" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="71dp"
+        android:layout_height="33dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="16dp"
+        android:onClick="onClickBack"
+        android:text="Voltar"
+        android:textSize="8sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/saveDateMonthly"
+        android:layout_width="56dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginBottom="16dp"
+        android:onClick="onClickSave"
+        android:text="Salvar"
+        android:textSize="8sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/MonthlyTextDate" />
+
+    <TextView
+        android:id="@+id/warningExpiration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:textColor="#FF1515"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/MonthlyTextDate" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

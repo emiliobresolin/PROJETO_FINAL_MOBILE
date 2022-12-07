@@ -9,10 +9,10 @@
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="250dp"
-        android:layout_height="39dp"
+        android:layout_width="268dp"
+        android:layout_height="47dp"
         android:fontFamily="sans-serif-black"
-        android:text="Mantimentos Diarios"
+        android:text="Mantimentos Diárias"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="24sp"
@@ -25,7 +25,7 @@
         android:layout_width="236dp"
         android:layout_height="75dp"
         android:fontFamily="sans-serif-black"
-        android:text="Lista de Compras Diarias"
+        android:text="Lista de Compras Diárias"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="24sp"
@@ -45,13 +45,16 @@
 
     <Button
         android:id="@+id/addButtonDaily"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
+        android:layout_width="210dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="126dp"
+        android:layout_marginEnd="126dp"
         android:layout_marginBottom="8dp"
         android:onClick="onCLickAdd"
         android:text="Adicionar Item"
         app:layout_constraintBottom_toTopOf="@+id/textViewDateDaily"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.47"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -60,15 +63,15 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="4dp"
         android:text="Validade desta Lista até dia:"
-        app:layout_constraintBottom_toTopOf="@+id/dailyTextDate"
+        app:layout_constraintBottom_toTopOf="@+id/DailyTextDate"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.068"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/dailyTextDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/DailyTextDate"
+        android:layout_width="177dp"
+        android:layout_height="40dp"
         android:layout_marginBottom="16dp"
         android:ems="10"
         android:inputType="date"
@@ -76,17 +79,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.079"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/deleteButton"
-        android:layout_width="93dp"
-        android:layout_height="54dp"
-        android:layout_marginEnd="4dp"
-        android:onClick="onClickDelete"
-        android:text="Apagar?"
-        android:textSize="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/productDelete" />
 
     <TextView
         android:id="@+id/productDelete"
@@ -98,20 +90,9 @@
         app:layout_constraintTop_toBottomOf="@+id/recyclerViewDaily" />
 
     <Button
-        android:id="@+id/button3"
-        android:layout_width="77dp"
-        android:layout_height="41dp"
-        android:layout_marginTop="36dp"
-        android:onClick="onClickRefresh"
-        android:text="Carregar"
-        android:textSize="8dp"
-        app:layout_constraintEnd_toStartOf="@+id/deleteButton"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerViewDaily" />
-
-    <Button
         android:id="@+id/button4"
-        android:layout_width="89dp"
-        android:layout_height="40dp"
+        android:layout_width="71dp"
+        android:layout_height="33dp"
         android:layout_marginEnd="4dp"
         android:layout_marginBottom="16dp"
         android:onClick="onClickBack"
@@ -119,5 +100,27 @@
         android:textSize="8sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/saveDateDaily"
+        android:layout_width="56dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginBottom="16dp"
+        android:onClick="onClickSave"
+        android:text="Salvar"
+        android:textSize="8sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/DailyTextDate" />
+
+    <TextView
+        android:id="@+id/warningExpiration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:textColor="#FF1515"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/DailyTextDate" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

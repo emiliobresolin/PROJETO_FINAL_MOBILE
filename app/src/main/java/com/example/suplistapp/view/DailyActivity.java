@@ -6,15 +6,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.suplistapp.R;
 import com.example.suplistapp.adapter.AdapterItems;
 import com.example.suplistapp.model.Item;
 import com.example.suplistapp.repository.ItemRepository;
+import com.example.suplistapp.utils.Validation;
 
 import java.util.List;
 
@@ -25,7 +28,11 @@ public class DailyActivity extends Activity {
     LinearLayoutManager layoutManager;
     AdapterItems adapter;
     List<Item> itemList;
-    TextView deleteItemName;
+    EditText dailyTextDate;
+    SharedPreferences preferences;
+    String dailyTextDateString;
+    Validation validation;
+    TextView warningExpiration;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,36 +44,18 @@ public class DailyActivity extends Activity {
         recyclerView.setLayoutManager(layoutManager);
         repository = new ItemRepository(this);
         itemList = repository.getAllDailyItems();
-        adapter = new AdapterItems(itemList);
+        adapter = new AdapterItems(itemList, this);
         recyclerView.setAdapter(adapter);
-        deleteItemName = findViewById(R.id.productDelete);
+        preferences = getSharedPreferences("pref", 0);
+        dailyTextDateString = preferences.getString("dailyTextDate", "");
+        dailyTextDate = findViewById(R.id.DailyTextDate);
+        dailyTextDate.setText(dailyTextDateString);
+        validation = new Validation();
+        warningExpiration = findViewById(R.id.warningExpiration);
     }
 
     public Context getContext() {
         return this;
-    }
-
-    public void onClickRefresh(View view){
-        try {
-            deleteItemName.setText(repository.getItemById(adapter.getIdOnClick()).getProductName());
-        }
-        catch (Exception e) {
-            deleteItemName.setText("Clique em algum item e tente novamente");
-            e.getMessage();
-        }
-    }
-
-    public void onClickDelete(View view) {
-        try {
-            Item item = repository.getItemById(adapter.getIdOnClick());
-            repository.deleteItem(item);
-            Intent intent = new Intent(view.getContext(), DailyActivity.class);
-            startActivity(intent);
-        }
-        catch (Exception e) {
-            deleteItemName.setText("Selecione e carregue um item antes");
-            e.getMessage();
-        }
     }
 
     public void onClickBack(View view){
@@ -78,5 +67,20 @@ public class DailyActivity extends Activity {
         Intent intent = new Intent(view.getContext(), AddItemActivity.class);
         intent.putExtra("listType", "daily");
         startActivity(intent);
+    }
+
+    public void onClickSave(View view){
+        SharedPreferences.Editor edit = preferences.edit();
+        String newValue = dailyTextDate.getText().toString();
+        if (!validation.dateValidation(newValue)) {
+            warningExpiration.setText("Data inválida");
+            return;
+        }
+        else {
+            warningExpiration.setText("");
+        }
+
+        edit.putString("dailyTextDate", newValue);
+        edit.apply();
     }
 }
